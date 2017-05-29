@@ -1,4 +1,4 @@
-"""List Assessment 
+"""List Assessment
 
 Edit the functions until all of the doctests pass when
 you run this file.
@@ -145,7 +145,13 @@ def largest_n_items(items, n):
         [3, 3]
     """
 
-    return []
+    n_largest_list = []
+    for number in range(0, n):
+        current_largest = max(items)
+        n_largest_list.append(current_largest)
+        items.remove(current_largest)
+
+    return sorted(n_largest_list)
 
 
 #####################################################################
