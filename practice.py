@@ -361,8 +361,6 @@ def reverse_list_in_place(items):
         items[item] = temp
         last_index -= 1
 
-    return items
-
 
 def duplicates(items):
     """Return list of words from input list which were duplicates.
@@ -386,12 +384,18 @@ def duplicates(items):
         >>> duplicates(orig)
         ['apple']
 
-        >>> orig
-        ['apple', 'apple', 'berry']
     """
 
+    for item in items:
+        # https://stackoverflow.com/questions/2600191/how-can-i-count-the-occurrences-of-a-list-item-in-python
+        occurence_count = items.count(item)
+        if occurence_count == 1:
+            items.remove(item)
+        if occurence_count > 1:
+            for count in range(0, occurence_count-1):
+                items.remove(item)
 
-    return 
+    return sorted(items)
 
 
 def find_letter_indices(words, letter):
@@ -421,7 +425,16 @@ def find_letter_indices(words, letter):
     `None`.)
     """
 
-    return []
+    indices_with_letter_list = []
+    for word in words:
+        for character in range(0, len(word)):
+            if word[character] == letter:
+                indices_with_letter_list.append(character)
+            elif letter not in word:
+                indices_with_letter_list.append(None)
+                break
+
+    return indices_with_letter_list
 
 
 #####################################################################
